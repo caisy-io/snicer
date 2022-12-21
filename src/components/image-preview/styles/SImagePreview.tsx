@@ -76,7 +76,12 @@ const CSSRoot = css<ISImagePreview>`
 
 const CSSContainer = css<ISImagePreview>`
   ${(props) => {
-    console.log(` props.imageResolution`, !!props.imageResolution, props.imageResolution && props.imageResolution.height > props.imageResolution.width);
+    console.log(
+      ` props.imageResolution`,
+      !!props.imageResolution,
+      props.imageResolution &&
+        props.imageResolution.height > props.imageResolution.width
+    );
     if (
       props.imageResolution &&
       props.imageResolution.height > props.imageResolution.width
@@ -130,7 +135,19 @@ const CSSImage = css<ISImagePreview>`
        " "
      )[1];
 
-     return `transform: scale(${props.config.zoom}) translateY(${offset})`;
+     let transformOrigin = "";
+
+     if (props.config.position == "topLeft") {
+       transformOrigin = `transform-origin: bottom right;`;
+     } else if (props.config.position == "topRight") {
+       transformOrigin = `transform-origin: bottom left;`;
+     } else if (props.config.position == "bottomLeft") {
+       transformOrigin = `transform-origin: top right;`;
+     } else if (props.config.position == "bottomRight") {
+       transformOrigin = `transform-origin: top left;`;
+     }
+
+     return `transform: scale(${props.config.zoom}) translateY(${offset});${transformOrigin}`;
    }};
   background-color: red;
   height: 100%;
