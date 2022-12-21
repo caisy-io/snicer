@@ -8,11 +8,6 @@ interface IControlArea{
 }
 
 export const ControlArea: React.FC <IControlArea> = ({ ...props }) => {
-  if (typeof window !== "undefined") {
-    console.log(`ControlArea props: `, props);
-  }
-  const { images } = useStore();
-
   return (
     <SControlArea>
       <div>

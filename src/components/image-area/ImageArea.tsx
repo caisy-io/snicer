@@ -7,9 +7,6 @@ interface IImageArea{
 }
 
 export const ImageArea: React.FC <IImageArea> = ({ ...props }) => {
-  if (typeof window !== "undefined") {
-    console.log(`ImageArea props: `, props);
-  }
   return (
     <SImageArea>
       {props.children}

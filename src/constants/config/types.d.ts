@@ -35,5 +35,6 @@ export interface IConfig {
   position: IPosition;
   ratio: INumberValue;
   offset: IValuePositiond<string>;
+  zoom: number;
   mode: IMode;
 }

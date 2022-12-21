@@ -17,6 +17,10 @@ export interface IImage {
   url: any;
   blob?: any;
 }
+export interface IImageResolution {
+  width: number;
+  height: number;
+}
 
 export interface IStore {
   config: IConfig;
@@ -25,6 +29,9 @@ export interface IStore {
   setImages: React.Dispatch<React.SetStateAction<IImage[]>>;
   onImageSave: () => void;
   onImageReset: () => void;
+  resetConfig: () => void;
+  setImageResolution: React.Dispatch<React.SetStateAction<IImageResolution | undefined>>;
+  imageResolution?: IImageResolution
 }
 
 const StoreProviderContext = createContext<IStore>({} as any);
@@ -37,11 +44,16 @@ export const StoreProvider: FC<{
   children?: React.ReactNode;
 }> = ({ children }) => {
   const [config, setConfigLocal] = useState<IConfig>(DEFAULT_CONFIG);
+  const [imageResolution, setImageResolution] = useState<IImageResolution | undefined>(undefined);
   const [images, setImages] = useState<IImage[]>([]);
   // const [finalImage, setFinalImage] = useState<IImage | null>(null);
 
   const onImageReset = () => {
     setImages([]);
+  };
+
+  const resetConfig = () => {
+    setConfigLocal(DEFAULT_CONFIG);
   };
 
   const setConfig = (setC: (x: IConfig) => IConfig) => {
@@ -102,6 +114,9 @@ export const StoreProvider: FC<{
         images,
         onImageSave,
         onImageReset,
+        setImageResolution,
+        resetConfig,
+        imageResolution
       }}
     >
       {children}

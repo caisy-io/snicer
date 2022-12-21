@@ -1,9 +1,11 @@
 import styled, { css } from "styled-components";
 import { IConfig } from "../../../constants/config/types";
+import { IImageResolution } from "../../../context/store";
 
 interface ISImagePreview {
   config: IConfig;
   targetWidth: number;
+  imageResolution?: IImageResolution;
 }
 
 const getValuesFromProps = ({ config, targetWidth }: ISImagePreview) => {
@@ -73,7 +75,22 @@ const CSSRoot = css<ISImagePreview>`
 `;
 
 const CSSContainer = css<ISImagePreview>`
-  width: 100%;
+  ${(props) => {
+    console.log(` props.imageResolution`, !!props.imageResolution, props.imageResolution && props.imageResolution.height > props.imageResolution.width);
+    if (
+      props.imageResolution &&
+      props.imageResolution.height > props.imageResolution.width
+    ) {
+      return css`
+        height: 100%;
+      `;
+    } else {
+      return css`
+        width: 100%;
+      `;
+    }
+  }};
+
   ${(props) => {
     if (props.config.mode == "cover") {
       return css<ISImagePreview>`
@@ -104,6 +121,17 @@ const CSSContainer = css<ISImagePreview>`
 
 const CSSImage = css<ISImagePreview>`
   object-fit: ${(props) => props.config.mode};
+   ${(props) => {
+     if (props.config.zoom == 1) {
+       return "";
+     }
+
+     const offset = `${props.config.offset[props.config.position]}`.split(
+       " "
+     )[1];
+
+     return `transform: scale(${props.config.zoom}) translateY(${offset})`;
+   }};
   background-color: red;
   height: 100%;
   width: 100%;

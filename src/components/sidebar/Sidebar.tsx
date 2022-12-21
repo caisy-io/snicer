@@ -12,6 +12,8 @@ import {
 import { useStore } from "../../context/store";
 import { SidebarOffset } from "../sidebar-offset/SidebarOffset";
 import { SidebarSection } from "../sidebar-section/SidebarSection";
+import { SSidebarSectionButton } from "../sidebar-section/styles/SSidebarSectionButton";
+import { SidebarZoom } from "../sidebar-zoom/SidebarZoom";
 import { SSidebar } from "./styles/SSidebar";
 
 interface ISidebar {
@@ -19,7 +21,7 @@ interface ISidebar {
 }
 
 export const Sidebar: React.FC<ISidebar> = ({ ...props }) => {
-  const { config } = useStore();
+  const { config, resetConfig } = useStore();
 
   return (
     <SSidebar>
@@ -52,8 +54,9 @@ export const Sidebar: React.FC<ISidebar> = ({ ...props }) => {
         optionKey={"gradient"}
         options={GRADIENT_OPTIONS}
       ></SidebarSection>
-
+      <SidebarZoom></SidebarZoom>
       {config.mode == "cover" ? <SidebarOffset></SidebarOffset> : null}
+      <SSidebarSectionButton onClick={() => {resetConfig()}}>Reset Config</SSidebarSectionButton>
     </SSidebar>
   );
 };

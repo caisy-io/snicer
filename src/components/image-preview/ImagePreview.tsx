@@ -10,10 +10,7 @@ interface IImagePreview {
 }
 
 export const ImagePreview: React.FC<IImagePreview> = ({ ...props }) => {
-  if (typeof window !== "undefined") {
-    console.log(`ImagePreview props: `, props);
-  }
-  const { images, config } = useStore();
+  const { images, config, imageResolution, setImageResolution } = useStore();
 
   // console.log(` config`, config);
   if (!images[0] || !config.ratio.value) return null;
@@ -25,15 +22,29 @@ export const ImagePreview: React.FC<IImagePreview> = ({ ...props }) => {
           <SImagePreview
             config={config}
             targetWidth={4096}
+            imageResolution={imageResolution}
             id={"image_preview_4k"}
           >
             <div className="container">
-              <img src={images[0].url}></img>
+              <img
+                src={images[0].url}
+                onLoad={(event) => {
+                  const image = event.target as HTMLImageElement;
+                  setImageResolution({
+                    height: image.naturalHeight,
+                    width: image.naturalWidth,
+                  });
+                }}
+              ></img>
             </div>
           </SImagePreview>
         </SImagePreviewHiddenRenderContainer>
         <SImagePreviewCenterWrapper>
-          <SImagePreview config={config} targetWidth={720}>
+          <SImagePreview
+            config={config}
+            targetWidth={720}
+            imageResolution={imageResolution}
+          >
             <div className="container">
               <img src={images[0].url}></img>
             </div>

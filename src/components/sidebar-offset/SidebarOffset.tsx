@@ -10,7 +10,6 @@ export const SidebarOffset: FC<ISidebarOffset> = ({ ...props }) => {
   const { config, setConfig } = useStore();
 
   const currentString = config.offset[config.position];
-  console.log(` currentString`, currentString);
   const x = currentString.split(" ")[0].replace("%", "");
   const y = currentString.split(" ")[1].replace("%", "");
 
@@ -40,7 +39,7 @@ export const SidebarOffset: FC<ISidebarOffset> = ({ ...props }) => {
         <label htmlFor="xOffset">Offset X</label>
         <input
           type="range"
-          min="0"
+          min="-100"
           max="100"
           value={x}
           onChange={onChangeX}
@@ -52,7 +51,7 @@ export const SidebarOffset: FC<ISidebarOffset> = ({ ...props }) => {
         <label htmlFor="yOffset">Offset Y</label>
         <input
           type="range"
-          min="0"
+          min="-100"
           max="100"
           onChange={onChangeY}
           value={y}

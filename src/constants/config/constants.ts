@@ -128,7 +128,8 @@ export const DEFAULT_CONFIG: IConfig = {
   position: DEFAULT_POSITION,
   radius: DEFAULT_RADIUS,
   offset: DEFAULT_OFFSET,
-  mode: DEFAULT_MODE
+  mode: DEFAULT_MODE,
+  zoom: 1,
 };
 
 export const KEYBINDINGS = {
