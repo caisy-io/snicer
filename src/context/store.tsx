@@ -86,7 +86,7 @@ export const StoreProvider: FC<{
     // const data = URL.createObjectURL(blob);
     // setFinalImage({ blob, url: data, name: images[0].name+"_snizer" });
     const buffer = await blob.arrayBuffer();
-    download(new Uint8Array(buffer), "image.png", "image/png");
+    download(new Uint8Array(buffer), images?.[0]?.name ? `${`${images[0].name}`.replace(/\.[^/.]+$/, "")}_nice.png`: "image.png", "image/png");
   };
 
   useKeyboardShortcut(
