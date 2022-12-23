@@ -160,9 +160,8 @@ ${(props) => {
     // this double border radius fixes 1px gap between image and container that is there for now reason in chrome
     return css<ISImagePreview>`
       border-radius: ${getValuesFromProps(props).borderRadius}px;
-      /* box-shadow:  */
-      filter: dropshadow(${(props) =>
-        (props.config.shadow.value as any)[props.config.position]});
+      box-shadow: ${(props) =>
+        (props.config.shadow.value as any)[props.config.position]};
     `;
   } else {
     return "";
