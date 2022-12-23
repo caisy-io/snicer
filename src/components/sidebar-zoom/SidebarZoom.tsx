@@ -16,6 +16,8 @@ export const SidebarZoom: FC<ISidebarOffset> = ({ ...props }) => {
     }));
   };
 
+  if (config.mode == "contain") return null;
+
   return (
     <SSidebarZoom>
       <div>

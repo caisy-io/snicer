@@ -127,7 +127,7 @@ const CSSContainer = css<ISImagePreview>`
 const CSSImage = css<ISImagePreview>`
   object-fit: ${(props) => props.config.mode};
    ${(props) => {
-     if (props.config.zoom == 1) {
+     if (props.config.zoom == 1 || props.config.mode == "contain") {
        return "";
      }
 
