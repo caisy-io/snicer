@@ -149,7 +149,7 @@ const CSSImage = css<ISImagePreview>`
 
      return `transform: scale(${props.config.zoom}) translateY(${offset});${transformOrigin}`;
    }};
-  background-color: red;
+  background-color: ${(props) => props.config.mode == "contain" ? "transparent" : "red"};
   height: 100%;
   width: 100%;
   object-position: ${(props) =>
