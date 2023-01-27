@@ -3,6 +3,7 @@ import { INumberValue, IStringValueWithPosition, IConfig, IPosition, IMode } fro
 export const RATIO_OPTIONS: INumberValue[] = [
   { name: "96:59", value: 59 / 96 },
   { name: "16:9", value: 9 / 16 },
+  { name: "OG", value: 627/1200  },
 ];
 
 export const DEFAULT_RATIO = RATIO_OPTIONS[0];
