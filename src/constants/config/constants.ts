@@ -90,11 +90,13 @@ export const DEFAULT_SHADOW = SHADOW_OPTIONS[2];
 
 export const RADIUS_OPTIONS: INumberValue[] = [
   { name: "none", value: 0 },
+  { name: "2%", value: 0.02 },
+  { name: "1.5%", value: 0.015 },
   { name: "1.25%", value: 0.0125 },
   { name: "1%", value: 0.01 },
   { name: "0.75%", value: 0.0075 },
 ];
-export const DEFAULT_RADIUS = RADIUS_OPTIONS[2];
+export const DEFAULT_RADIUS = RADIUS_OPTIONS[4];
 
 export const GRADIENT_OPTIONS = [
   {
